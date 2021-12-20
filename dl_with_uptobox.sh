@@ -1,4 +1,4 @@
-## Download from uptobox.com with premium account
+## Download from uptobox.com with your premium account
 
 ## variables
 
