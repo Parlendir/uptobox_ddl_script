@@ -1,5 +1,7 @@
 ## Download from uptobox.com with your premium account
 
+## other source : https://mon-cookbook-informatique.blogspot.com/2019/02/direct-download-on-uptobox-with-premium.html?m=1
+
 ## variables
 
 ## link sample 
