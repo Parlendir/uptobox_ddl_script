@@ -3,6 +3,15 @@
 This short bash script allows, from console, cron, synology user scheduled tasks.... to download from uptobox.com with your premium account.
 
 Here is how it works :
+ 
+1. You configure this script to use a file as a source, your download folder and your uptobox premium account token 
+2. You create a cronjob / scheduled task 
+3. You grab some links from uptobox 
+4. You put these links in the source file, somewhere easy for you to update
+5. The script reads the file, download targets and empties the source file while producing a simple log
+6. Rince and repeat from 3. to 5. :) 
+
+
 
 The variables are : 
 
