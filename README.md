@@ -13,17 +13,19 @@ Here is how it works :
 
 
 
-The variables are : 
+The variables are :
 
-## account token
+### account token
 TOKEN=put your token here
 (found in your account settings, direct download must be **activated**)
 
-## file containing the links, one link per line
+### file containing the links, one link per line
 SOURCE=put the file path here
 
-## log file
+### log file
 LOG=put the log file path here
 
-## folder to download files
+### folder to download files
 DESTINATION=put the download folder path here
+
+
