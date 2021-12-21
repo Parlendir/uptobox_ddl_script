@@ -6,11 +6,9 @@ Here is how it works :
 
 The variables are : 
 
-## account token : found in your account settings, direct download must be **activated**
+## account token
 TOKEN=put your token here
-
-## base ddl url
-BASE_URL=https://uptobox.com/api/link
+(found in your account settings, direct download must be **activated**)
 
 ## file containing the links, one link per line
 SOURCE=put the file path here
