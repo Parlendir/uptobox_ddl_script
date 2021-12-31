@@ -30,12 +30,13 @@ do
 	# get the file id from the link
 	# get what comes after uptobox.com
 	FILE_CODE=$(echo $LIEN | awk -F '/' '{print $4}')  
-
+	
 	# and before aff_id
-	FILE_CODE=$(echo $FILE_CODE | awk -F '?' '{print $1}')
-
+	#FILE_CODE=$(echo $FILE_CODE | awk -F '?' '{print $1}')
+	FILE_CODE=${FILE_CODE:0:12}
+	
 	# build the full dl link
-	URL="${BASE_URL}?token=${TOKEN}&file_code=${FILE_CODE}"
+	URL="${BASE_URL}?file_code=${FILE_CODE}&token=${TOKEN}"
 
 	# get the ddl link
 	DOWNLOAD=$(/usr/bin/curl -s ${URL} | /usr/bin/jq -r '.data' | /usr/bin/jq -r '.dlLink')
@@ -47,10 +48,10 @@ do
 	/usr/bin/wget -c -nc -P $DESTINATION $DOWNLOAD
 
 	# write in the log
-	echo ${FILE_NAME} " / " ${LIEN} >> ${LOG}
+	echo ${FILE_NAME} " | " ${LIEN} " | " ${FILE_CODE} >> ${LOG}
 
-# one file per 20 seconds
-sleep 20
+# wait 1 second after dl complete
+sleep 1
 
 done < $SOURCE
 
@@ -59,4 +60,3 @@ rm ${SOURCE}
 
 # create empty SOURCE file
 touch $SOURCE
-
