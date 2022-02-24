@@ -1,6 +1,9 @@
-## Download from uptobox.com with your premium account
-
-## other source : https://mon-cookbook-informatique.blogspot.com/2019/02/direct-download-on-uptobox-with-premium.html?m=1
+## Download from uptobox.com with premium account
+##
+## If the file exists on uptobox, it is downloaded to DESTINATION
+## & a log is filed
+## If not, the file link is put aside to be retried at the next run
+## 
 
 ## variables
 
@@ -8,19 +11,20 @@
 # https://uptobox.com/abcdefgh1234?aff_id=12345678
 
 ## account token 
-TOKEN=token
+TOKEN=<token>
 
 ## base ddl url
 BASE_URL=https://uptobox.com/api/link
 
 ## file containing the links, one link per line
-SOURCE=/volume2/Downloads/serie/serie.txt
+SOURCE=Liens.md
+SOURCE_tmp=Liens_tmp.md
 
 ## log file
-LOG=/volume2/Downloads/serie/uptobox_script.log
+LOG=Utp_log.md
 
 ## folder to download files
-DESTINATION=/volume2/Downloads/serie
+DESTINATION=/download
 
 
 # read all lines in the SOURCE
@@ -47,16 +51,24 @@ do
 	# download
 	/usr/bin/wget -c -nc -P $DESTINATION $DOWNLOAD
 
-	# write in the log
-	echo ${FILE_NAME} " | " ${LIEN} " | " ${FILE_CODE} >> ${LOG}
+	# if wget gets an error, the file is put aside fr the next scan
+	if [ $? -ne 0 ]; then
+		echo $LIEN >> ${SOURCE_tmp}
+	else
+		# write in the log if wget has succeeded
+		echo "["${FILE_NAME:0:30}"]("${LIEN}")" >> ${LOG}
+	fi
 
-# wait 1 second after dl complete
-sleep 1
+	# wait 1 second after dl complete
+	sleep 1
 
-done < $SOURCE
+done < ${SOURCE}
 
 # when done, delete source file
 rm ${SOURCE}
 
-# create empty SOURCE file
-touch $SOURCE
+# be sure SOURCE_tmp exists
+touch ${SOURCE_tmp}
+
+# mv SOURCE_tmp to SOURCE
+mv ${SOURCE_tmp} ${SOURCE}
