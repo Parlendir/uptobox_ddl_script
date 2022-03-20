@@ -9,7 +9,8 @@ Here is how it works :
 3. You grab some links from uptobox 
 4. You put these links in the source file, somewhere easy for you to update
 5. The script reads the file, download targets and empties the source file while producing a simple log
-6. Rince and repeat from 3. to 5. :) 
+6. If downloaded file is an archive, then unzip and delete archive
+7. Rince and repeat from 3. to 5. :) 
 
 
 
